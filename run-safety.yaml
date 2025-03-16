@@ -1,0 +1,20 @@
+version: '2'
+image_name: ollama
+apis:
+- safety
+providers:
+  inference:
+  - provider_id: ollama
+    provider_type: remote::ollama
+    config:
+      url: ${env.OLLAMA_URL:http://localhost:11434}
+models:
+- metadata: {}
+  model_id: ${env.SAFETY_MODEL}
+  provider_id: ollama
+  provider_model_id: llama-guard3:1b
+  model_type: llm
+server:
+  port: 5002
+  request_timeout: 120
+  provider_request_timeout: 120
